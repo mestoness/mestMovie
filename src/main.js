@@ -3,8 +3,10 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import { VueMasonryPlugin } from "vue-masonry";
-Vue.use(VueMasonryPlugin);
+import VueMeta from "vue-meta";
 
+Vue.use(VueMasonryPlugin);
+Vue.use(VueMeta);
 Vue.config.productionTip = false;
 
 new Vue({

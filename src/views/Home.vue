@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid" style="margin-top:1rem;color:white">
     <div class="col" style="padding:12px" v-if="currentPages > 1">
-      Geçerli Sayfa Numarası : {{ currentPages }}
+      Sayfa : {{ currentPages }}
     </div>
     <div class="row" v-masonry transition-duration="0.3s" item-selector=".mono">
       <transition-group name="slide-fade">
@@ -31,10 +31,14 @@
               </div>
               <div class="card-action">
                 <router-link
-                  tag="a"
                   :to="{ name: 'movies', params: { id: item.id } }"
-                  ><i class="fa fa-film" style="color:white"></i> Ayrıntılara
-                  Göz At
+                  custom
+                  v-slot="{ navigate, href }"
+                >
+                  <a @click="navigate" :href="href"
+                    ><i class="fa fa-film" style="color:white"></i> Ayrıntılara
+                    Göz At
+                  </a>
                 </router-link>
               </div>
             </div>
