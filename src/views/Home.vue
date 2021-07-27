@@ -8,7 +8,7 @@
       v-masonry
       transition-duration="0.3s"
       item-selector=".mono"
-      v-if="popularMovies.count > 20"
+      v-if="popularMovies.count > 0"
     >
    
       <transition-group name="slide-fade">
