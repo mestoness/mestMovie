@@ -18,7 +18,9 @@
         </div>
       </div>
     </div>
-    <div v-else style="text-align:center;padding:3rem 0">Aradığınız şey Bulunamadı</div>
+    <div v-else style="text-align:center;padding:3rem 0">
+      Aradığınız şey Bulunamadı
+    </div>
   </div>
 </template>
 <script>
@@ -31,6 +33,11 @@ export default {
       return this.$store.getters.getMoviesDetails;
     },
   },
+  metaInfo() {
+    return {
+      title: this.moviesDetails.title,
+    };
+  },
 };
 </script>
 <style>
@@ -41,12 +48,13 @@ export default {
 }
 
 .movie-bg {
-  opacity: 0.1;
+  opacity: 0.05;
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   min-height: 600px;
+  height: 100%;
 }
 
 .movie-content {

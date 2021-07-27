@@ -10,6 +10,7 @@ const store = new Vuex.Store({
   },
   mutations: {
     popularMovies(state, fields) {
+      state.moviesDetails = [];
       state.popularMovies = fields;
     },
     moviesDetails(state, fields) {

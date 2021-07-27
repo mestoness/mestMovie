@@ -2,26 +2,35 @@
   <div :class="openNav == true ? 'show nss-navbar' : 'nss-navbar'">
     <div class="content">
       <div class="logo">
-        <router-link to="/" tag="a" class="ns-nav-a">MestMovies</router-link>
+        <li class="nav-item-ns" style="list-style-type:none;">
+          <router-link to="/" custom v-slot="{ navigate, href }">
+            <a class="ns-nav-a" @click="navigate" :href="href">MestMovie </a>
+          </router-link>
+        </li>
       </div>
       <ul class="menu-list">
         <div class="icon cancel-btn" @click="openNav = !openNav">
           <i class="fa fa-times"></i>
         </div>
         <li class="nav-item-ns">
-          <router-link to="/" tag="a" class="ns-nav-a">Ana Sayfa</router-link>
+          <router-link to="/" custom v-slot="{ navigate, href }">
+            <a
+              class="ns-nav-a"
+              :class="$route.path == '/' ? 'active' : ''"
+              @click="navigate"
+              :href="href"
+              >Ana Sayfa
+            </a>
+          </router-link>
         </li>
-        <!-- <li class="nav-item-ns">
-          <a href="" class="ns-nav-a">Kategoriler</a>
-        </li> -->
       </ul>
       <div class="icon menu-btn" @click="openNav = !openNav">
         <i class="fa fa-bars"></i>
       </div>
     </div>
-    <div class="ns-navbar-blur" :class="openNav == true ? 'show' : ''"></div>
   </div>
 </template>
+
 <style scoped>
 .nss-navbar .content {
   margin: auto;
@@ -55,21 +64,12 @@
   font-weight: 500;
   text-decoration: none;
 }
-
+.menu-list .nav-item-ns .ns-nav-a.active {
+  border-bottom: 2px solid #5463a3;
+}
 .nss-navbar .menu-list {
   display: inline-flex;
   z-index: 999;
-}
-
-.ns-navbar-blur {
-  display: none;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 10;
-  top: 0;
-  left: 0;
-  position: fixed;
 }
 
 .menu-list .nav-item-ns {
@@ -84,9 +84,7 @@
   font-weight: 500;
   text-decoration: none;
 }
-.ns-navbar-blur.show {
-  display: block !important;
-}
+
 @media (min-width: 950px) {
   .menu-list .nav-item-ns .ns-nav-a:after {
     display: block;
@@ -136,7 +134,7 @@
   .nss-navbar .menu-list {
     position: fixed;
     height: 100%;
-    width: 80%;
+    width: 100%;
     max-width: 100%;
     left: -100%;
     top: 0px;
@@ -180,6 +178,11 @@ export default {
     return {
       openNav: false,
     };
+  },
+  watch: {
+    $route() {
+      this.openNav = false;
+    },
   },
 };
 </script>
