@@ -3,12 +3,19 @@
     <div class="col" style="padding:12px" v-if="currentPages > 1">
       Sayfa : {{ currentPages }}
     </div>
-    <div class="row" v-masonry transition-duration="0.3s" item-selector=".mono">
+    <div
+      class="row"
+      v-masonry
+      transition-duration="0.3s"
+      item-selector=".mono"
+      v-if="popularMovies.count > 20"
+    >
+   
       <transition-group name="slide-fade">
         <!---->
         <div
           class="col l3 m6 s12 mono"
-          v-for="(item, i) in popularMovies.results"
+          v-for="(item, i) in popularMovies.data.results"
           :key="i + 'z'"
           v-masonry-tile
         >
