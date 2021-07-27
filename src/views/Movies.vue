@@ -1,6 +1,6 @@
 <template>
   <div style="color:white;">
-    <div class="movie-wrap" v-if="moviesDetails.title">
+    <div class="movie-wrap" v-if="moviesDetails.success != 'false'">
       <img
         class="movie-bg"
         :src="
@@ -20,6 +20,9 @@
     </div>
     <div v-else style="text-align:center;padding:3rem 0">
       Aradığınız şey Bulunamadı
+      <router-link to="/" custom v-slot="{ navigate, href }">
+        <a @click="navigate" :href="href">Ana Sayfaya Geri Dön</a>
+      </router-link>
     </div>
   </div>
 </template>

@@ -24,7 +24,10 @@ const store = new Vuex.Store({
           `https://api.themoviedb.org/3/movie/popular?api_key=3044afc915e1301ae1d9551614db3711&language=tr-TRS&page=${pagesNo}`
         )
         .then((response) => {
-          context.commit("popularMovies", response.data);
+          context.commit("popularMovies", {
+            data: response.data,
+            count: response.data.results.length,
+          });
         });
     },
     moviesDetails(context, movieID) {
@@ -34,6 +37,9 @@ const store = new Vuex.Store({
         )
         .then((response) => {
           context.commit("moviesDetails", response.data);
+        })
+        .catch(() => {
+          context.commit("moviesDetails", { success: "false" });
         });
     },
   },
