@@ -10,7 +10,6 @@
       item-selector=".mono"
       v-if="popularMovies.count > 0"
     >
-   
       <transition-group name="slide-fade">
         <!---->
         <div
@@ -68,7 +67,7 @@
         class="btn-floating btn-large waves-effect waves-light bg-blue-x"
         style="margin-right:2px"
         @click="nextPage"
-        v-if="currentPages + 1 <= popularMovies.total_pages"
+        v-if="currentPages + 1 < popularMovies.data.total_pages"
       >
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
